@@ -1,0 +1,6 @@
+
+[DESIGN]
+
+# Minimum number of public methods for a class (see R0903).
+# Default 2 is annoying when planning things with bare files so I set this to 1.
+min-public-methods=1

@@ -1,5 +1,6 @@
+""" Application entry-point """
+
 from app import App
 
 if __name__ == "__main__":
-    App()
-    
+    App().start()

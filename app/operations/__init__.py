@@ -1,4 +1,4 @@
-# Contains operations for working with numeric values
+""" Contains operations for working with numeric values"""
 from decimal import Decimal
 
 def add(x: Decimal, y: Decimal) -> Decimal:
@@ -44,6 +44,6 @@ def divide(x: Decimal, y: Decimal) -> Decimal:
     Returns:
         A Decimal value representing the result of the operation."""
     if y == 0:
-        """ Handle ZeroDivisionError """
+        # Handle ZeroDivisionError
         raise ValueError("You can't divide by zero.")
     return x / y
