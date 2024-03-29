@@ -14,6 +14,16 @@ class Calculation:
     def perform(self) -> Decimal:
         """ Performs the operation using x and y, returns the result """
         return self.op(self.x, self.y)
+    
+    def __repr__(self):
+        map_operation = {
+            add: "+",
+            subtract: "-",
+            multiply: "x",
+            divide: "/"
+        }
+        return f"{self.x} {map_operation[self.op]} {self.y}"
+
 
 
 class Calculator:

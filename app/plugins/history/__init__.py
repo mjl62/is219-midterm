@@ -26,7 +26,8 @@ class History(Command):
             self.command_options[args[0]]()
 
     def _show(self):
-        print(CalculationHistory.show())
+        for i in CalculationHistory.show():
+            print (i)
 
     def _last(self):
         print(CalculationHistory.last())
