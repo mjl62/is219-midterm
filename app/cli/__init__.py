@@ -17,17 +17,20 @@ class Command:
 
 class CLI:
     """ Command Line Interface for the console application """
+
     def __init__(self):
         self.commands = {}
+        self.menu = "Commands:\n-----------\n"
+
 
     def register_command(self, command: Command) -> bool:
         """ Register a new command to the CLI
 
     Args:
-        command_string: A string representing how the command should be called from the command line
-        command: A callable representing the method the command should call"""
+        command: A Command object containing the command to be registered to the CLI """
 
         self.commands[command.command_string] = command.run
+        self.menu += f"{command.command_string} - {command.help_string}\n"
         return True
         ### Pytest HATES general error catching, should figure out a solution in near future
         #try:
