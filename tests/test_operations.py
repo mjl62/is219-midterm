@@ -1,6 +1,6 @@
 """ Tests for the operations functions in app/operations """
 import pytest
-from app.operations import add, subtract, multiply, divide
+from app.calculator.operations import add, subtract, multiply, divide
 
 def test_add():
     """ Test addition function """
