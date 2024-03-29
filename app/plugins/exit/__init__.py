@@ -4,8 +4,11 @@ from app import Command
 
 class Exit(Command):
     """ Adds 'exit' command to stop a running program """
+
+    help_string = "Exits the program"
+
     def __init__(self):
-        super().__init__(command_string="exit", help_string="Exits the program")
+        super().__init__(command_string="exit")
 
     def run(self, args:list=None):
         """ Exit the program when the command is executed """

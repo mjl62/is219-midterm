@@ -7,9 +7,8 @@ class Command:
     help_string = None
 
     """ Command Class for CLI Commands and Plugins """
-    def __init__(self, command_string: str, help_string: str=None):
+    def __init__(self, command_string: str):
         self.command_string = command_string
-        self.help_string = help_string
 
     @abstractmethod
     def run(self, args:list=None):
