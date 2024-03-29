@@ -1,5 +1,7 @@
 """ Main application class file """
 
+from dotenv import load_dotenv
+import os
 from decimal import Decimal
 from app.cli import CLI, Command
 from app.plugins.exit import Exit
@@ -9,6 +11,7 @@ from app.plugins.menu import Menu
 class App:
     """ Main Application Class """
     def __init__(self):
+        load_dotenv()
         self.cli = CLI()
         self.load_plugins()
 
