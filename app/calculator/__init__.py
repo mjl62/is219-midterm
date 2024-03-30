@@ -86,9 +86,10 @@ class CalculationHistory:
     history: List[Calculation] = []
 
     @classmethod
-    def add(cls, calc: Calculation):
+    def add(cls, calc: Calculation) -> List[Calculation]:
         """ Add a calculation to the history """
         cls.history.append(calc)
+        return cls.history
 
     @classmethod
     def show(cls) -> List[Calculation]:
@@ -108,7 +109,10 @@ class CalculationHistory:
 
     @staticmethod
     def dataframe_to_list(df: pd.DataFrame) -> List[Calculation]:
-        """ Convert a pandas dataframe to a list of Calculations """
+        """ Convert a pandas dataframe to a list of Calculations 
+        
+        Args:
+            pandas.DataFrame: A dataframe with the columns 'op', 'x' and 'y'"""
         calc_list: list = []
         for _, row in df.iterrows():
             print(row)
@@ -117,7 +121,7 @@ class CalculationHistory:
         return calc_list
 
     @classmethod
-    def import_history(cls, file: str):
+    def import_history(cls, file: str) -> List[Calculation]:
         """ Import a list of calculations into the current calculation history """
         try:
             history = FileHandler.read(filename=file)
