@@ -21,22 +21,25 @@ class History(Command):
     def run(self, args:list=None):
         """ When executed the program prints a menu of commands """
         if not args:
-            self._show()
+            self._show(_args=args)
         else:
-            self.command_options[args[0]]()
+            self.command_options[args[0]](_args=args)
 
-    def _show(self):
+    def _show(self, _args):
         for i in CalculationHistory.show():
             print (i)
 
-    def _last(self):
+    def _last(self, _args):
         print(CalculationHistory.last())
 
-    def _clear(self):
+    def _clear(self, _args):
         CalculationHistory.clear()
 
-    def _import(self):
-        print("Importing...")
+    def _import(self, _args):
+        try:
+            print(CalculationHistory.import_history(_args[1]))
+        except IndexError:
+            print("You must specify a file location! Usage: history import <filepath>")
 
-    def _export(self):
+    def _export(self, _args):
         print("Exporting...")
