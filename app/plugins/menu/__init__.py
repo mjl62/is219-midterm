@@ -1,4 +1,5 @@
 """ Command to get a menu of all possible commands """
+import os
 from app import Command
 
 class Menu(Command):
@@ -11,4 +12,4 @@ class Menu(Command):
 
     def run(self, args:list=None):
         """ When executed the program prints a menu of commands """
-        print(self.help_string)
+        print(os.environ["MENU"])
