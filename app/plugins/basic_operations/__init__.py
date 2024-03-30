@@ -61,10 +61,10 @@ class Multiply(Command):
     def run(self, args:list=None):
         try:
             args = list(map(Decimal, args)) # Convert to integers
-            
+
             if not args[1]: # Throws IndexError if there is not two values
                 return
-            
+
             total = args.pop(0)
             for num in args:
                 total = Calculator.multiply(total, num)
@@ -72,7 +72,7 @@ class Multiply(Command):
         except InvalidOperation:
             print("Command only accepts numeric values")
         except IndexError:
-                print("Requires at least two numbers following 'multiply'")
+            print("Requires at least two numbers following 'multiply'")
 
 
 class Divide(Command):
