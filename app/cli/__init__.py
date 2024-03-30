@@ -1,6 +1,7 @@
 """ Command Line Interface (CLI) Class for user interaction with the application. """
-from abc import abstractmethod
 
+import os
+from abc import abstractmethod
 
 class Command:
     """ Command abstract class for plugins to inherit from """
@@ -28,22 +29,19 @@ class CLI:
 
     Args:
         command: A Command object containing the command to be registered to the CLI """
-
+        command = command()
         self.commands[command.command_string] = command.run
         self.menu += f"{command.command_string} - {command.help_string}\n"
         return True
-        ### Pytest HATES general error catching, should figure out a solution in near future
-        #try:
-        #    self.commands[command_string] = command
-        #    return True
-        #except Exception as err:
-        #    print(f"{err} \nFailed to register a command! This will be in the logs in the future.")
-        #    return False
-
 
     def loop(self):
         """ CLI Loop, runs for programs lifetime after startup. """
-        args = input(">>> ").split()
+        cursor = ">>> "
+        try:
+            cursor = os.environ["CURSOR"]
+        except KeyError:
+            pass # Do nothing, don't throw error
+        args = input(cursor).split()
         user_in = args.pop(0)
         if user_in in self.commands:
             self.commands.get(user_in)(args)

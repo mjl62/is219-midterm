@@ -1,7 +1,9 @@
 """ Calculator and related classes """
 from decimal import Decimal
 from typing import Callable, List
+import pandas as pd
 from app.calculator.operations import add, subtract, multiply, divide
+from app.file_operations import FileHandler
 
 class Calculation:
     """ Calculation object to represent operations """
@@ -14,16 +16,33 @@ class Calculation:
     def perform(self) -> Decimal:
         """ Performs the operation using x and y, returns the result """
         return self.op(self.x, self.y)
-    
+
     def __repr__(self):
+        return f"{self.x} {Calculation.op_to_symbol(self.op)} {self.y} = {self.perform()}"
+
+    @staticmethod
+    def op_to_symbol(operation: Callable[[Decimal, Decimal], Decimal]):
+        """ Convert an operation to its mathematical symbol """
+
         map_operation = {
             add: "+",
             subtract: "-",
             multiply: "x",
             divide: "/"
         }
-        return f"{self.x} {map_operation[self.op]} {self.y}"
+        return map_operation[operation]
 
+    @staticmethod
+    def string_to_op(string: str) -> Callable[[Decimal, Decimal], Decimal]:
+        """ Convert a string to a matching operator"""
+
+        map_operation = {
+            "add": add,
+            "subtract": subtract,
+            "multiply": multiply,
+            "divide": divide
+        }
+        return map_operation[string]
 
 
 class Calculator:
@@ -87,8 +106,23 @@ class CalculationHistory:
         cls.history.clear()
         return cls.history
 
+    @staticmethod
+    def dataframe_to_list(df: pd.DataFrame) -> List[Calculation]:
+        """ Convert a pandas dataframe to a list of Calculations """
+        calc_list: list = []
+        for _, row in df.iterrows():
+            print(row)
+            op = Calculation.string_to_op(row["op"])
+            calc_list.append(Calculation(x=row['x'], y=row['y'], operation=op))
+        return calc_list
+
     @classmethod
-    def import_history(cls, history: List[Calculation]):
+    def import_history(cls, file: str):
         """ Import a list of calculations into the current calculation history """
-        cls.history += history
+        try:
+            history = FileHandler.read(filename=file)
+            cls.history += CalculationHistory.dataframe_to_list(history)
+            return cls.history
+        except FileNotFoundError:
+            print(f"Couldn't find the file '{file}'")
         return cls.history
