@@ -9,10 +9,10 @@
 5. Start the program with `python3 main.py`
 
 **Commands**
-- `add <value> <value>` - Adds two or more values
-- `subtract <value> <value>` - Subtracts two or more values
-- `multiply<value> <value>` - Multiplies two or more values
-- `divide <value> <value>` - Divides two or more values
+- `add <value> <value>` - Adds two or more values numeric values
+- `subtract <value> <value>` - Subtracts two or more values numeric values
+- `multiply<value> <value>` - Multiplies two or more values numeric values
+- `divide <value> <value>` - Divides two or more values numeric values
 - `menu` - Gets a list of all the currently available commands
 - `exit` - Exits the program
 - `history <show|last|clear|save|load>`
