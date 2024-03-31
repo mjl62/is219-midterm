@@ -9,6 +9,41 @@ def test_add(capsys):
     captured = capsys.readouterr()
     assert captured.out.strip() == '28'
 
+def test_noninteger(capsys):
+    """ Test error catching from invalid args """
+    args = ['8', '20', 'a']
+    basic_operations.Add().run(args=args)
+    captured = capsys.readouterr()
+    assert captured.out.strip() == 'Command only accepts numeric values'.strip()
+    basic_operations.Subtract().run(args=args)
+    captured = capsys.readouterr()
+    assert captured.out.strip() == 'Command only accepts numeric values'.strip()
+    basic_operations.Multiply().run(args=args)
+    captured = capsys.readouterr()
+    assert captured.out.strip() == 'Command only accepts numeric values'.strip()
+    basic_operations.Divide().run(args=args)
+    captured = capsys.readouterr()
+    assert captured.out.strip() == 'Command only accepts numeric values'.strip()
+
+def test_no_args(capsys):
+    """ Test what happens when there's no args given """
+    # Add
+    basic_operations.Add().run()
+    captured = capsys.readouterr()
+    assert captured.out.strip() == "Requires at least one number following 'add'".strip()
+    # Subtract
+    basic_operations.Subtract().run()
+    captured = capsys.readouterr()
+    assert captured.out.strip() == "Requires at least one number following 'subtract'".strip()
+    # Multiply
+    basic_operations.Multiply().run()
+    captured = capsys.readouterr()
+    assert captured.out.strip() == "Requires at least one number following 'multiply'".strip()
+    # Divide
+    basic_operations.Divide().run()
+    captured = capsys.readouterr()
+    assert captured.out.strip() == "Requires at least one number following 'divide'".strip()
+
 def test_subtract(capsys):
     """ Test the subtraction plugin """
     basic_operations.Subtract().run(args=['10', '22'])

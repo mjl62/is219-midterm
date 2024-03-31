@@ -140,7 +140,6 @@ class CalculationHistory:
         df = pd.DataFrame(out_list, columns=['op', 'x', 'y'])
         return df
 
-
     @classmethod
     def import_history(cls) -> List[Calculation]:
         """ Import a list of calculations into the current calculation history """

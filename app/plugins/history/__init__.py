@@ -23,7 +23,10 @@ class History(Command):
         if not args:
             print(self.help_string)
         else:
-            self.command_options[args[0]](_args=args)
+            try:
+                self.command_options[args[0]](_args=args)
+            except KeyError:
+                print(f"Unknown command 'history {args[0]}'")
 
     def _show(self, _args):
         for i in CalculationHistory.show():
