@@ -48,11 +48,11 @@ App:
 **Implementation**
 
 Abstract Factory:
-- https://github.com/mjl62/is219-midterm/blob/df33e94414d2f633649be2aa5614e5eb45d7ea5d/app/cli/__init__.py#L7
+- [https://github.com/mjl62/is219-midterm/blob/df33e94414d2f633649be2aa5614e5eb45d7ea5d/app/cli/__init__.py#L7](https://github.com/mjl62/is219-midterm/blob/df33e94414d2f633649be2aa5614e5eb45d7ea5d/app/cli/__init__.py#L7-L18)
 	- Using an abstract class with abstract methods we are able to have plugins with the same methods but different results. Since they all have a .run() function and they're all Command classes, we can call these methods even if we arent sure what the classes will be because they must have these methods defined.
 
 Builder:
-- https://github.com/mjl62/is219-midterm/blob/df33e94414d2f633649be2aa5614e5eb45d7ea5d/app/calculator/__init__.py#L144
+- [https://github.com/mjl62/is219-midterm/blob/df33e94414d2f633649be2aa5614e5eb45d7ea5d/app/calculator/__init__.py#L144](https://github.com/mjl62/is219-midterm/blob/df33e94414d2f633649be2aa5614e5eb45d7ea5d/app/calculator/__init__.py#L143-L153)
 	- Multiple methods here I believe qualify for this, but they all take arguments, pass them through a set of instructions to create a new object, then return a new one created from the original arguments.
 
 How Environment Variables were used:
