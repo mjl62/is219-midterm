@@ -68,6 +68,7 @@ class Calculator:
         ) -> Decimal:
         """ Perform an operation """
         calc = Calculation(x, y, op)
+        calc.perform() # see if error gets thrown before adding to history
         CalculationHistory.add(calc)
         return calc.perform()
 
