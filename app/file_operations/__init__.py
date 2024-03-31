@@ -9,3 +9,9 @@ class FileHandler:
         """ Read a csv file """
         df = pd.read_csv(filename)
         return df
+
+    @staticmethod
+    def save(df: pd.DataFrame, filename: str):
+        """ Write to a csv file"""
+        df.to_csv(filename, index=False)
+        return df
