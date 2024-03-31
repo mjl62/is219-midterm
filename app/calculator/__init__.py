@@ -1,4 +1,5 @@
 """ Calculator and related classes """
+import os
 from decimal import Decimal
 from typing import Callable, List
 import pandas as pd
@@ -44,6 +45,17 @@ class Calculation:
         }
         return map_operation[string]
 
+    @staticmethod
+    def op_to_string(operation: Callable[[Decimal, Decimal], Decimal]) -> str:
+        """ Convert a string to a matching operator"""
+
+        map_operation = {
+            add: "add",
+            subtract: "subtract",
+            multiply: "multiply",
+            divide: "divide"
+        }
+        return map_operation[operation]
 
 class Calculator:
     """ Calculator class """
@@ -108,25 +120,43 @@ class CalculationHistory:
         return cls.history
 
     @staticmethod
-    def dataframe_to_list(df: pd.DataFrame) -> List[Calculation]:
+    def dataframe_to_calculations(df: pd.DataFrame) -> List[Calculation]:
         """ Convert a pandas dataframe to a list of Calculations 
         
         Args:
             pandas.DataFrame: A dataframe with the columns 'op', 'x' and 'y'"""
         calc_list: list = []
         for _, row in df.iterrows():
-            print(row)
             op = Calculation.string_to_op(row["op"])
             calc_list.append(Calculation(x=row['x'], y=row['y'], operation=op))
         return calc_list
 
     @classmethod
-    def import_history(cls, file: str) -> List[Calculation]:
+    def calculations_to_dataframe(cls, calc_list: List[Calculation]) -> pd.DataFrame:
+        """ Convert a list of calculations to a dataframe """
+        out_list = []
+        for item in calc_list:
+            out_list.append([Calculation.op_to_string(item.op), item.x, item.y])
+        df = pd.DataFrame(out_list, columns=['op', 'x', 'y'])
+        return df
+
+
+    @classmethod
+    def import_history(cls) -> List[Calculation]:
         """ Import a list of calculations into the current calculation history """
         try:
-            history = FileHandler.read(filename=file)
-            cls.history += CalculationHistory.dataframe_to_list(history)
+            history_dir = os.environ["HISTORY_DIR"] + "/history.csv"
+            history = FileHandler.read(filename=history_dir)
+            cls.history += CalculationHistory.dataframe_to_calculations(history)
             return cls.history
         except FileNotFoundError:
-            print(f"Couldn't find the file '{file}'")
+            print(f"Couldn't find the file '{history_dir}'")
         return cls.history
+
+    @classmethod
+    def export_history(cls) -> bool:
+        """ Export the history of calculations as a .csv file """
+        history_dir = os.environ["HISTORY_DIR"] + "/history.csv"
+        df = CalculationHistory.calculations_to_dataframe(cls.history)
+        FileHandler.save(df, filename=history_dir)
+        return True

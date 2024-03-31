@@ -5,7 +5,7 @@ from app.calculator import CalculationHistory
 class History(Command):
     """ Adds 'history' command """
 
-    help_string="Manage the calculation history. Usage: history <show|last|clear|import|export>\n"
+    help_string="Manage the calculation history. Usage: history <show|last|clear|save|load>\n"
 
     def __init__(self):
         super().__init__(command_string="history")
@@ -14,14 +14,14 @@ class History(Command):
             "show": self._show,
             "last": self._last,
             "clear": self._clear,
-            "import": self._import,
-            "export": self._export
+            "load": self._import,
+            "save": self._export
         }
 
     def run(self, args:list=None):
         """ When executed the program prints a menu of commands """
         if not args:
-            self._show(_args=args)
+            print(self.help_string)
         else:
             self.command_options[args[0]](_args=args)
 
@@ -36,10 +36,11 @@ class History(Command):
         CalculationHistory.clear()
 
     def _import(self, _args):
-        try:
-            print(CalculationHistory.import_history(_args[1]))
-        except IndexError:
-            print("You must specify a file location! Usage: history import <filepath>")
+        CalculationHistory.import_history()
+        print("Load success!")
 
     def _export(self, _args):
-        print("Exporting...")
+        if CalculationHistory.export_history():
+            print("Save success!")
+        else:
+            print("Save failed!")
