@@ -48,24 +48,24 @@ App:
 **Implementation**
 
 Abstract Factory:
-- [https://github.com/mjl62/is219-midterm/blob/df33e94414d2f633649be2aa5614e5eb45d7ea5d/app/cli/__init__.py#L7](https://github.com/mjl62/is219-midterm/blob/df33e94414d2f633649be2aa5614e5eb45d7ea5d/app/cli/__init__.py#L7-L18)
+- https://github.com/mjl62/is219-midterm/blob/df33e94414d2f633649be2aa5614e5eb45d7ea5d/app/cli/__init__.py#L7-L18
 	- Using an abstract class with abstract methods we are able to have plugins with the same methods but different results. Since they all have a .run() function and they're all Command classes, we can call these methods even if we arent sure what the classes will be because they must have these methods defined.
 
 Builder:
-- [https://github.com/mjl62/is219-midterm/blob/df33e94414d2f633649be2aa5614e5eb45d7ea5d/app/calculator/__init__.py#L144](https://github.com/mjl62/is219-midterm/blob/df33e94414d2f633649be2aa5614e5eb45d7ea5d/app/calculator/__init__.py#L143-L153)
+- https://github.com/mjl62/is219-midterm/blob/df33e94414d2f633649be2aa5614e5eb45d7ea5d/app/calculator/__init__.py#L143-L153
 	- Multiple methods here I believe qualify for this, but they all take arguments, pass them through a set of instructions to create a new object, then return a new one created from the original arguments.
 
 How Environment Variables were used:
-- https://github.com/mjl62/is219-midterm/blob/df33e94414d2f633649be2aa5614e5eb45d7ea5d/app/__init__.py#L32
-- https://github.com/mjl62/is219-midterm/blob/df33e94414d2f633649be2aa5614e5eb45d7ea5d/app/cli/__init__.py#L45
-- https://github.com/mjl62/is219-midterm/blob/df33e94414d2f633649be2aa5614e5eb45d7ea5d/app/calculator/__init__.py#L147
+- https://github.com/mjl62/is219-midterm/blob/df33e94414d2f633649be2aa5614e5eb45d7ea5d/app/__init__.py#L30-L49
+- https://github.com/mjl62/is219-midterm/blob/df33e94414d2f633649be2aa5614e5eb45d7ea5d/app/cli/__init__.py#L40-L49
+- https://github.com/mjl62/is219-midterm/blob/df33e94414d2f633649be2aa5614e5eb45d7ea5d/app/calculator/__init__.py#L147-L149
 - I mostly used environment variables for allowing the user to change file locations such as logging locations, history.csv locations, and plugin locations, however I also added the ability to change the CLI cursor if required. The .env is preconfigured to work with the program as is, but I think allowing this kind of flexibility is worth having.
 
 
 Try/Catch/Except:
-- https://github.com/mjl62/is219-midterm/blob/5c28195af73579d6453bac31279ecca9e279349a/app/cli/__init__.py#L44
+- https://github.com/mjl62/is219-midterm/blob/5c28195af73579d6453bac31279ecca9e279349a/app/cli/__init__.py#L43-L49
 	- In this instance I used a try/catch to get a value from the environment variables, but catch the error if it doesn't exist and move forward with the default setting.
- - https://github.com/mjl62/is219-midterm/blob/5c28195af73579d6453bac31279ecca9e279349a/app/plugins/basic_operations/__init__.py#L85
+ - https://github.com/mjl62/is219-midterm/blob/5c28195af73579d6453bac31279ecca9e279349a/app/plugins/basic_operations/__init__.py#L83-L97
  	- In this one I used a mix of both LBYL and EAFP to handle multiple possible scenarios. It looks at the args to determine if there's any values, then if not it returns instantly, not going through with the process. However, if it gets an invalid value but does still get values then it catches the errors and handles those accordingly.
 
 
