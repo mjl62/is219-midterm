@@ -1,6 +1,54 @@
 # IS 219-002 Midterm
 ## Matthew LiDonni - Spring 2024
 
+**Setup**
+1. Clone or download the repository.
+2. In the terminal go into the cloned repository and create the virtual environment.<br>`python -m venv venv`
+3. Enable the virtual environment.<br>`source venv/bin/activate`
+4. Download the requirements with PIP. <br> `pip3 install -r requirements.txt`
+5. Start the program with `python3 main.py`
+
+**Commands**
+- `add <value> <value>` - Adds two or more values
+- `subtract <value> <value>` - Subtracts two or more values
+- `multiply<value> <value>` - Multiplies two or more values
+- `divide <value> <value>` - Divides two or more values
+- `menu` - Gets a list of all the currently available commands
+- `exit` - Exits the program
+- `history <show|last|clear|save|load>`
+	- `show` - Show the currently stored history
+	- `last` - Get the last performed operation
+	- `clear` - Clears the currently stored history
+	- `save` - Saves the currently stored history to history.csv in the path defined in .env for HISTORY_DIR.
+	- `load` - Loads saved history into the current history from history.csv in the path defined in .env for HISTORY_DIR.
+
+Documentation
+App: 	
+- Functions
+	- **\_\_init__:** Loads environment variables, creates cli (app.cli - CLI), sets up logger, and loads all plugins for the program.
+	- **logging_setup**: Configure logger to write to defined path at LOG_DIR in .env
+	- **load_plugins**: Loads all plugins from a destination defined at PLUGIN_DIR in .env
+	- **start**: Begins CLI runtime loop
+- Properties:
+	-  **app.cli**: The applications CLI instance
+
+**Environment Variable Configuration:**
+customizes the CLI cursor, leave out for default ">>> "
+- LOG_DIR: Required, path to store log files, will attempt to create the directory if it does not exist. Default is "logs"
+	- Example: `LOG_DIR = "logs"`
+- HISTORY_DIR: Required, path to save and load calculation history data from. Default value is "app/data".
+	- Example: `HISTORY_DIR = "app/data"`
+- PLUGIN_DIR: Required, path to the plugins directory. Default value is "app/plugins" but can be changed if necessary.
+	- Example: `PLUGIN_DIR="app/plugins"`
+- CURSOR: Optional, defines a different cursor for prompting the user on the CLI. Leaving blank will default to ">>> "
+	- Example: `CURSOR="app>"`
+
+
+
+
+
+--------------------------------------------------------------------
+
 ### TODO FOR SUBMISSION: 
 - [ ] Documentation, configuration examples, commit history
 - [ ] Project description
