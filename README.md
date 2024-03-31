@@ -15,13 +15,13 @@
 
 ### Feature progress:
 - [ ] CLI
-    - [x] Read-Eval-Print-Loop (REPL) interface
-	- [ ] Add, Subtract, Multiply, Divide commands
+    - [ ] Read-Eval-Print-Loop (REPL) interface
+	- [x] Add, Subtract, Multiply, Divide commands
 	- [ ] Manage Calculation History
-	- [ ] Access extended functionality through dynamically loaded plugins
+	- [x] Access extended functionality through dynamically loaded plugins
 - [ ] Plugin System
-	- [ ] Dynamically load plugins to integrate new commands without altering code of program
-	- [ ] Include a "Menu" command to list all available plugin commands
+	- [x] Dynamically load plugins to integrate new commands without altering code of program
+	- [x] Include a "Menu" command to list all available plugin commands
 - [ ] Calculation History Management with Pandas
 	- [ ] Reading and writing to CSV
 	- [ ] Load, save, delete and clear history records through REPL interface
@@ -31,7 +31,7 @@
 	- [ ] Dynamic logging configuration through environment variables for levels and output destinations.
 - [ ] Design Patterns for Scalable Architecture
 	- [ ] Facade Pattern: Offer simplified interface for complex pandas data manipulations
-	- [ ] Command Pattern: Structure commands within REPL for effective calculation and history management.
+	- [x] Command Pattern: Structure commands within REPL for effective calculation and history management.
 	- [ ] Factory Method, Singleton and Strategy Patterns: Further enhance applications code structure, flexibility and scalability
 ### Development, testing and documentation
 - [ ] Testing/Quality
