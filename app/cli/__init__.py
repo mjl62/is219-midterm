@@ -1,6 +1,7 @@
 """ Command Line Interface (CLI) Class for user interaction with the application. """
 
 import os
+import logging
 from abc import abstractmethod, ABC
 
 class Command(ABC):
@@ -33,13 +34,16 @@ class CLI:
         command = command()
         self.commands[command.command_string] = command.run
         self.menu += f"{command.command_string} - {command.help_string}\n"
+        logging.info("Command Registered: %s", command.command_string)
         return True
 
     def loop(self):
         """ CLI Loop, runs for programs lifetime after startup. """
+        logging.info("CLI started")
         cursor = ">>> "
         try:
             cursor = os.environ["CURSOR"]
+            logging.info("Loaded custom cursor: %s", cursor)
         except KeyError:
             pass # Do nothing, don't throw error
         args = input(cursor).split()
