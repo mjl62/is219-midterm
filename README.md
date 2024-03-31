@@ -1,6 +1,8 @@
 # IS 219-002 Midterm
 ## Matthew LiDonni - Spring 2024
 
+Video demo of the program: https://drive.google.com/file/d/1xyew8JK9I5oq2ls8WNgkNZkI66dWTqHV/view?usp=sharing
+
 **Setup**
 1. Clone or download the repository.
 2. In the terminal go into the cloned repository and create the virtual environment.<br>`python -m venv venv`
@@ -68,6 +70,9 @@ Try/Catch/Except:
  - https://github.com/mjl62/is219-midterm/blob/5c28195af73579d6453bac31279ecca9e279349a/app/plugins/basic_operations/__init__.py#L83-L97
  	- In this one I used a mix of both LBYL and EAFP to handle multiple possible scenarios. It looks at the args to determine if there's any values, then if not it returns instantly, not going through with the process. However, if it gets an invalid value but does still get values then it catches the errors and handles those accordingly.
 
+Logging:
+- https://github.com/mjl62/is219-midterm/blob/5c28195af73579d6453bac31279ecca9e279349a/app/__init__.py#L47
+	- My logging implementation was lacking, but one way I used it was logging how many plugins were loaded on program startup.
 
 --------------------------------------------------------------------
 
