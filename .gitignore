@@ -2,3 +2,6 @@
 venv
 .coverage
 __pycache__
+logs
+log.txt
+.env
