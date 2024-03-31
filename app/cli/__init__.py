@@ -1,13 +1,14 @@
 """ Command Line Interface (CLI) Class for user interaction with the application. """
 
 import os
-from abc import abstractmethod
+from abc import abstractmethod, ABC
 
-class Command:
+class Command(ABC):
     """ Command abstract class for plugins to inherit from """
     help_string = None
 
     """ Command Class for CLI Commands and Plugins """
+    @abstractmethod
     def __init__(self, command_string: str):
         self.command_string = command_string
 
@@ -50,10 +51,3 @@ class CLI:
         else:
             print(f"Unknown command: '{user_in}'")
         return self.loop()
-
-    def help(self):
-        """ Prints all currently registered commands """
-        print("Commands:")
-        for key in self.commands:
-            print(f"    {key}")
-        print("\n")
